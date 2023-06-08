@@ -12,14 +12,14 @@ def test_item_example():
 # try them out to 
 
 def buggy_function():
-    bug_fixed = False
+    bug_fixed = True
     if bug_fixed:
         return 42
     else:
         return 43
 
 
-
+@pytest.mark.skipif(bugs_are_fixed, reason="no longer needed")
 @pytest.mark.xfail(xfail_bug_in_original, reason="42 bug: found in buggy_function, this should return 42!")
 def test_bug_characterization():
     assert buggy_function() == 43
